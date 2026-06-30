@@ -2,6 +2,23 @@
 
 A Pioneer/AlphaTheta XDJ-RX3 / XDJ-AZ inspired skin for [Mixxx](https://mixxx.org/) 2.5+, designed for use with Pioneer / AlphaTheta DJ controllers (DDJ-400, DDJ-SB3, DDJ-FLX4, DDJ-FLX10 and similar).
 
+## Screenshots
+
+### Startup
+![Startup](screenshots/startup.png)
+
+### 2 Decks
+![2 Decks](screenshots/2deck.png)
+
+### 4 Decks
+![4 Decks](screenshots/4deck.png)
+
+### Library
+![Library](screenshots/library.png)
+
+### Settings
+![Settings](screenshots/shortcut.png)
+
 
 ---
 
@@ -164,11 +181,6 @@ engine.setValue('[Tab]', 'overview', 1);
 engine.setValue('[Tab]', 'shortcut', 1);
 ```
 
----
-
-## License
-
-See [LICENSE](SKIN/LICENSE).
 
 ---
 
