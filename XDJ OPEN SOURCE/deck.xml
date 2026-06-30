@@ -1,0 +1,512 @@
+<Template>
+  <WidgetGroup>
+    <ObjectName>Deck</ObjectName>
+    <Layout>vertical</Layout>
+    <Children>
+     
+      <WidgetGroup>
+        <ObjectName>DeckMetadata</ObjectName>
+            <!-- Two columns, first one Deck Number, second one Track Title -->
+        <Layout>horizontal</Layout>
+        <Size>100me,22f</Size>
+        <Children>
+          <WidgetGroup>
+            <ObjectName>DeckNumber</ObjectName>
+            <Layout>vertical</Layout>
+            <Size>30f,22f</Size>
+            <Children>
+                        <Label>
+                        <ObjectName>DeckName</ObjectName>
+                        <Size>22f,11f</Size>
+                        <Text>DECK</Text>
+                        </Label>
+
+                      <WidgetGroup>
+                        <ObjectName>DeckActive</ObjectName>
+                        <Layout>horizontal</Layout>
+                        <Size>22f,11f</Size>
+                        <Children>
+                              <Label>
+                              <ObjectName>DeckPlaying</ObjectName>
+                              <Text>(( </Text>
+                              <Style>
+                                color: #d73535;
+                              </Style>
+                              <Connection>
+                                <ConfigKey>[Channel<Variable name="channel"/>],play</ConfigKey>
+                                <BindProperty>visible</BindProperty>
+                              </Connection>
+                            </Label>
+                            <Label>
+                              <ObjectName>DeckChannelTitle</ObjectName>
+                              <Text><Variable name="channel"/></Text>
+                            </Label>
+                            <Label>
+                              <ObjectName>DeckPlaying</ObjectName>
+                              <Text> ))</Text>
+                              <Style>
+                                color: #d73535;
+                              </Style>
+                              <Connection>
+                                <ConfigKey>[Channel<Variable name="channel"/>],play</ConfigKey>
+                                <BindProperty>visible</BindProperty>
+                              </Connection>
+                            </Label>
+                        
+
+
+
+
+                      </Children>
+                    </WidgetGroup>
+
+
+
+
+
+
+            </Children>
+          </WidgetGroup>
+
+    
+              <WidgetGroup><Size>10f,0f</Size></WidgetGroup> <!-- Spacer -->
+
+                      
+
+                        
+
+            <!-- Track Title -->
+            <TrackProperty>
+              <ObjectName>DeckTitleText</ObjectName>
+              <Size>100me,22f</Size>
+              <TooltipId>track_title</TooltipId>
+              <Property>titleInfo</Property>
+              <Alignment>Left</Alignment>
+              <Elide>right</Elide>
+              <Channel><Variable name="channel"/></Channel>
+              <!-- track_loaded used to be bound to highlight here but no
+                   CSS rule ever consumed it (no visual effect either way),
+                   so it's repurposed for day_mode instead — needed so the
+                   track title text isn't stuck white on a light day-mode
+                   background. -->
+            </TrackProperty>
+        </Children>
+      </WidgetGroup>
+
+
+
+      <!-- MAIN DECK CONTROLS (Row 1) -->
+      <WidgetGroup>
+        <ObjectName>DeckRow1</ObjectName>
+        <Layout>horizontal</Layout>
+        <Size>100me,38f</Size>
+        <Children>
+
+          <!-- QUANTIZE -->
+          <WidgetGroup>
+            <ObjectName>QuantizeCol</ObjectName>
+            <Layout>vertical</Layout>
+            <Size>28f,38f</Size> <!-- Matching width for alignment with KeyInfo -->
+            <Children>
+              <WidgetGroup><Size>0f,5f</Size></WidgetGroup> <!-- Top spacer -->
+              <!-- Center button inside column -->
+              <WidgetGroup>
+                <Layout>horizontal</Layout>
+                <Size>28f,28f</Size>
+                <Children>
+                   <WidgetGroup><Size>0f,28f</Size></WidgetGroup>
+                   <PushButton>
+                     <NumberStates>2</NumberStates>
+                     <Size>28f,28f</Size>
+                     <State>
+                       <Number>0</Number>
+                       <Text>Q</Text>
+                     </State>
+                     <State>
+                       <Number>1</Number>
+                       <Text>Q</Text>
+                     </State>
+                     <Connection>
+                       <ConfigKey>[Channel<Variable name="channel"/>],quantize</ConfigKey>
+                     </Connection>
+                   </PushButton>
+                </Children>
+              </WidgetGroup>
+            </Children>
+          </WidgetGroup>
+
+          <WidgetGroup><Size>4f,38f</Size></WidgetGroup> <!-- Spacer -->
+
+          <!-- TRACK TIME -->
+          <WidgetGroup>
+            <ObjectName>TrackTimeContainer</ObjectName>
+            <Layout>vertical</Layout>
+            <!-- Big size for big font -->
+            <Size>100f,38f</Size>
+            <Children>
+                <NumberPos>
+                <ObjectName>DeckTrackTime</ObjectName>
+                <MinimumSize>100f,38f</MinimumSize>
+                <TooltipId>track_time</TooltipId>
+                <NumberOfDigits>8</NumberOfDigits>
+                <Channel><Variable name="channel"/></Channel>
+                <Connection>
+                    <ConfigKey>[Controls],ShowDurationRemaining</ConfigKey>
+                    <Transform>
+                    <IsEqual>2</IsEqual>
+                    </Transform>
+                    <BindProperty>highlight</BindProperty>
+                </Connection>
+                </NumberPos>
+            </Children>
+          </WidgetGroup>
+
+          <!-- FLEXIBLE SPACER between Time and Pitch Info -->
+          <WidgetGroup><Size>38me,38f</Size></WidgetGroup>
+
+          <!-- PITCH COLUMN: Row 1 = [MT] [+- Range], Row 2 = [Pitch %] -->
+          <WidgetGroup>
+            <ObjectName>PitchCurrent<Variable name="channel"/></ObjectName>
+            <Layout>vertical</Layout>
+            <!-- Wide enough to fit the MT box and the Range label side by side -->
+            <Size>100me,38f</Size>
+            <Children>
+                <WidgetGroup><Size>100f,4f</Size></WidgetGroup>
+                <!-- Top Row of Pitch Column -->
+                <WidgetGroup>
+                    <ObjectName>PitchTopRow</ObjectName>
+                    <Layout>horizontal</Layout>
+                    <Size>me,19f</Size>
+                    <Children>
+                        <!-- MASTER TEMPO -->
+                        <!-- Squashed into a square like Quantize -->
+                        <Label>
+                            <ObjectName>MasterTempo</ObjectName>
+                            <Size>19f,19f</Size> <!-- Compact Square -->
+                            <Text>MT</Text>
+                            <Connection>
+                                <ConfigKey>[Channel<Variable name="channel"/>],keylock</ConfigKey>
+                                <BindProperty>highlight</BindProperty>
+                            </Connection>
+                        </Label>
+
+                        <!-- Spacer -->
+                        <WidgetGroup><Size>4f,38f</Size></WidgetGroup>
+
+                        <!-- PITCH RANGE -->
+
+                                    <WidgetGroup>
+                                      <ObjectName>DeckBPMRangePercent</ObjectName>
+                                      <Size>30f,11f</Size>
+                                      <Layout>horizontal</Layout>
+                                      <Children>
+                                          <!--RANG DEL PITCH-->
+                                          <Label>
+                                            <ObjectName>BPMRangePlusMinus</ObjectName>
+                                            <Text>&#177;</Text>
+                                          </Label>
+                                          <RateRange>
+                                            <TooltipId>rate_range_display</TooltipId>
+                                            <ObjectName>RateDisplay</ObjectName>
+                                            <Channel><Variable name="channel" /></Channel>
+                                            <Display>range</Display>
+                                            <Size>11f,0me</Size>
+                                          </RateRange>
+                                      </Children>
+                                    </WidgetGroup>
+
+
+                            </Children>
+                        </WidgetGroup>
+
+
+                <!-- Bottom Row of Pitch Column -->
+                <WidgetGroup>
+                    <ObjectName>PitchBottomRow</ObjectName>
+                    <Layout>horizontal</Layout>
+                    <Size>me,19f</Size>
+                    <Children>
+                        <!-- Push Pitch to right alignment under the Range -->
+                        <WidgetGroup><Size>15f,19f</Size></WidgetGroup>
+                        <NumberRate>
+                            <TooltipId>rate_display</TooltipId>
+                            <ObjectName>PitchCurrent</ObjectName>
+                            <Channel><Variable name="channel"/></Channel>
+                            <NumberOfDigits>2</NumberOfDigits>
+                            <Size>38f,19f</Size>
+                        </NumberRate>
+                        <Label>
+                            <ObjectName>BPMPercent</ObjectName>
+                            <Text>%</Text>
+                            <Size>23f,19f</Size>
+                        </Label>
+                    </Children>
+                </WidgetGroup>
+
+            </Children>
+          </WidgetGroup>
+
+          <WidgetGroup><Size>8f,38f</Size></WidgetGroup> <!-- Padding before BPM -->
+
+          <!-- BPM -->
+          <WidgetGroup>
+            <ObjectName>TrackBPMContainer</ObjectName>
+            <Layout>vertical</Layout>
+            <!-- Wide column to ensure it doesn't clip, less padding requested -->
+            <Size>58max,30f</Size>
+            <Children>
+                <WidgetGroup>
+                <ObjectName>DeckBPMWrapper</ObjectName>
+                <Layout>vertical</Layout>
+                <!-- Box border/bg turns orange when this deck is the sync
+                     leader — "sync_leader" (alias "sync_master") is free
+                     here, no conflict with day_mode. -->
+                <Connection>
+                  <ConfigKey>[Channel<Variable name="channel"/>],sync_leader</ConfigKey>
+                  <BindProperty>highlight</BindProperty>
+                </Connection>
+                <Children>
+                    <!-- Title: BPM / BEAT SYNC / MASTER, layered via
+                         Layout=stacked (QStackedLayout::StackAll, confirmed
+                         in src/widget/wwidgetgroup.cpp — ALL visible
+                         children are drawn, later ones on top). "BPM" is
+                         hidden outright once sync_enabled is on, so there's
+                         no need to combine sync_leader+sync_enabled into a
+                         single condition (skin XML can't AND two different
+                         ControlObjects anyway) — MASTER simply draws over
+                         BEAT SYNC since becoming sync leader also sets
+                         sync_enabled=true (confirmed in synccontrol.cpp). -->
+                    <WidgetGroup>
+                    <ObjectName>DeckBPMTitleWrapper</ObjectName>
+                    <Layout>stacked</Layout>
+                    <Size>58f,11f</Size>
+                    <Children>
+                        <Label>
+                        <ObjectName>DeckBPMTitle</ObjectName>
+                        <Text>BPM</Text>
+                        <Connection>
+                          <ConfigKey>[Channel<Variable name="channel"/>],sync_enabled</ConfigKey>
+                          <BindProperty>visible</BindProperty>
+                          <Transform><Not/></Transform>
+                        </Connection>
+                        </Label>
+                        <Label>
+                        <ObjectName>DeckBPMTitleSync</ObjectName>
+                        <Text>BEAT SYNC</Text>
+                        <!-- sync_mode==1 is specifically "Follower" (0=None,
+                             1=Follower, 2/3=Leader — confirmed in
+                             src/engine/sync/syncable.h) — using this single
+                             CO instead of sync_enabled makes BEAT SYNC and
+                             MASTER truly mutually exclusive without needing
+                             to combine two different ControlObjects (which
+                             skin XML can't do), since sync_enabled alone is
+                             also true while leading. -->
+                        <Connection>
+                          <ConfigKey>[Channel<Variable name="channel"/>],sync_mode</ConfigKey>
+                          <BindProperty>visible</BindProperty>
+                          <Transform><IsEqual>1</IsEqual></Transform>
+                        </Connection>
+                        </Label>
+                        <Label>
+                        <ObjectName>DeckBPMTitleMaster</ObjectName>
+                        <Text>MASTER</Text>
+                        <Connection>
+                          <ConfigKey>[Channel<Variable name="channel"/>],sync_leader</ConfigKey>
+                          <BindProperty>visible</BindProperty>
+                        </Connection>
+                        </Label>
+                    </Children>
+                    </WidgetGroup>
+                    <!-- Number: same stacking trick — DeckBPM already uses
+                         "highlight" for day_mode, so it can't also react to
+                         sync_leader; instead a second, fixed-orange
+                         NumberBpm instance (same value, same CO) is shown
+                         on top whenever this deck is the sync leader. -->
+                    <WidgetGroup>
+                    <ObjectName>DeckBPMNumberWrapper</ObjectName>
+                    <Layout>stacked</Layout>
+                    <Size>58f,19f</Size>
+                    <Children>
+                        <NumberBpm>
+                        <ObjectName>DeckBPM</ObjectName>
+                        <TooltipId>visual_bpm</TooltipId>
+                        <Channel><Variable name="channel"/></Channel>
+                        <NumberOfDigits>1</NumberOfDigits>
+                        <Connection>
+                            <ConfigKey>[Channel<Variable name="channel"/>],visual_bpm</ConfigKey>
+                        </Connection>
+                        <Connection>
+                          <ConfigKey>[Channel<Variable name="channel"/>],sync_leader</ConfigKey>
+                          <BindProperty>visible</BindProperty>
+                          <Transform><Not/></Transform>
+                        </Connection>
+                        </NumberBpm>
+                        <NumberBpm>
+                        <ObjectName>DeckBPMMaster</ObjectName>
+                        <TooltipId>visual_bpm</TooltipId>
+                        <Channel><Variable name="channel"/></Channel>
+                        <NumberOfDigits>1</NumberOfDigits>
+                        <Connection>
+                            <ConfigKey>[Channel<Variable name="channel"/>],visual_bpm</ConfigKey>
+                        </Connection>
+                        <Connection>
+                          <ConfigKey>[Channel<Variable name="channel"/>],sync_leader</ConfigKey>
+                          <BindProperty>visible</BindProperty>
+                        </Connection>
+                        </NumberBpm>
+                    </Children>
+                    </WidgetGroup>
+                </Children>
+                </WidgetGroup>
+            </Children>
+          </WidgetGroup>
+                    <WidgetGroup><Size>8f,38f</Size></WidgetGroup> <!-- Padding after BPM -->
+
+        </Children>
+      </WidgetGroup> <!-- End Row 1 -->
+
+      <!-- MAIN DECK CONTROLS (Row 2 - Key and Waveform) -->
+      <!-- Made very short as requested to just fit the tight waveform -->
+      <WidgetGroup>
+        <ObjectName>DeckRow2</ObjectName>
+        <Layout>horizontal</Layout>
+        <Size>100me,27f</Size>
+        <Children>
+
+            <!-- KEY INFO (Now mapped strictly below Q column structure) -->
+            <WidgetGroup>
+                <ObjectName>KeyWrapper</ObjectName>
+                <!-- Width matched exactly to QuantizeCol so it sits right under it -->
+                <Size>28f,27f</Size>
+                <Layout>vertical</Layout>
+                <Children>
+                    <WidgetGroup><Size>19f,8f</Size></WidgetGroup>
+                    <WidgetGroup>
+                        <Layout>horizontal</Layout>
+                        <Size>23f,15f</Size>
+                        <Children>
+                            <Key>
+                                <ObjectName>KeyInfo</ObjectName>
+                                <!-- Nice standard size for font drawing -->
+                                <Size>23f,15f</Size>
+                                <TooltipId>visual_key</TooltipId>
+                                <DisplayCents>false</DisplayCents>
+                                <Connection>
+                                    <ConfigKey>[Channel<Variable name="channel"/>],visual_key</ConfigKey>
+                                </Connection>
+                            </Key>
+                        </Children>
+                    </WidgetGroup>
+                </Children>
+            </WidgetGroup>
+
+            <WidgetGroup><Size>4f,27f</Size></WidgetGroup> <!-- Padding before Waveform -->
+
+            <!-- WAVEFORM OVERVIEW -->
+            <WidgetGroup>
+                <ObjectName>DeckOverviewContainer</ObjectName>
+                <Layout>vertical</Layout>
+                <!-- This will eagerly expand horizontally -->
+                <Size>0me,27f</Size>
+                <Children>
+                    <Overview>
+                    <ObjectName>DeckOverview</ObjectName>
+                    <!-- Explicitly squished waveform height -->
+                    <Size>me,54f</Size>
+                    <Channel><Variable name="channel"/></Channel>
+                    <BgColor>#000</BgColor>
+                    <SignalColor>#222</SignalColor>
+                    <SignalLowColor>#0055E1</SignalLowColor>
+                    <SignalMidColor>#FFA600</SignalMidColor>
+                    <SignalHighColor>#FFFF88</SignalHighColor>
+                    <PlayedOverlayColor>#40ffffff</PlayedOverlayColor>
+                    <Mark>
+                        <Control>cue_point</Control>
+                        <Color>#eb870f</Color>
+                    </Mark>
+                    <Mark>
+                        <Control>hotcue_1_position</Control>
+                        <Text>A</Text>
+                        <Color>#f44040</Color>
+                        <TextColor>#f44040</TextColor>
+                        <Align>top</Align>
+                    </Mark>
+                    <Mark>
+                        <Control>hotcue_2_position</Control>
+                        <Text>B</Text>
+                        <Color>#0ddcf2</Color>
+                        <TextColor>#0ddcf2</TextColor>
+                        <Align>top</Align>
+                    </Mark>
+                    <Mark>
+                        <Control>hotcue_3_position</Control>
+                        <Text>C</Text>
+                        <Color>#a5df13</Color>
+                        <TextColor>#a5df13</TextColor>
+                        <Align>top</Align>
+                    </Mark>
+                    <Mark>
+                        <Control>hotcue_4_position</Control>
+                        <Text>D</Text>
+                        <Color>#9d4cfd</Color>
+                        <TextColor>#9d4cfd</TextColor>
+                        <Align>top</Align>
+                    </Mark>
+                    <Mark>
+                        <Control>hotcue_5_position</Control>
+                        <Text>E</Text>
+                        <Color>#3fec2b</Color>
+                        <TextColor>#3fec2b</TextColor>
+                        <Align>top</Align>
+                    </Mark>
+                    <Mark>
+                        <Control>hotcue_6_position</Control>
+                        <Text>F</Text>
+                        <Color>#e6681c</Color>
+                        <TextColor>#e6681c</TextColor>
+                        <Align>top</Align>
+                    </Mark>
+                    <Mark>
+                        <Control>hotcue_7_position</Control>
+                        <Text>G</Text>
+                        <Color>#2749c8</Color>
+                        <TextColor>#2749c8</TextColor>
+                        <Align>top</Align>
+                    </Mark>
+                    <Mark>
+                        <Control>hotcue_8_position</Control>
+                        <Text>H</Text>
+                        <Color>#c7b205</Color>
+                        <TextColor>#c7b205</TextColor>
+                        <Align>top</Align>
+                    </Mark>
+                    <Mark>
+                        <Control>loop_start_position</Control>
+                        <Color>#f09c40</Color>
+                    </Mark>
+                    <Mark>
+                        <Control>loop_end_position</Control>
+                        <Color>#f09c40</Color>
+                    </Mark>
+                    <MarkRange>
+                        <StartControl>loop_start_position</StartControl>
+                        <EndControl>loop_end_position</EndControl>
+                        <EnabledControl>loop_enabled</EnabledControl>
+                        <Color>#f09c40</Color>
+                        <Opacity>0.5</Opacity>
+                        <DisabledColor>#acacac</DisabledColor>
+                        <DisabledOpacity>0.2</DisabledOpacity>
+                    </MarkRange>
+                    <Connection>
+                        <ConfigKey>[Channel<Variable name="channel"/>],playposition</ConfigKey>
+                    </Connection>
+                    </Overview>
+                </Children>
+            </WidgetGroup>
+
+        </Children>
+      </WidgetGroup> <!-- End Row 2 -->
+
+    </Children>
+  </WidgetGroup>
+</Template>

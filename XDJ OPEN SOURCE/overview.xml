@@ -1,0 +1,160 @@
+<Template>
+  <WidgetGroup>
+    <ObjectName>Overview</ObjectName>
+    <Layout>vertical</Layout>
+    <Size>0me,0me</Size>
+    <Children>
+
+      <!-- TOP — sidebar (deck info) | big waveforms | Beat FX sidebar.
+           Only as tall as the big waveforms; does NOT include the bottom
+           per-deck transport row, which spans the full width below
+           (matches the Pioneer XDJ-RX3 reference layout). -->
+      <WidgetGroup>
+        <ObjectName>OverviewTop</ObjectName>
+        <Layout>horizontal</Layout>
+        <Size>0me,0me</Size>
+        <Children>
+
+          <!-- LEFT SIDEBAR — both decks' info stacked vertically -->
+          <WidgetGroup>
+            <ObjectName>Sidebar</ObjectName>
+            <Layout>vertical</Layout>
+            <Size>110f,0me</Size>
+            <!-- Order: 3 → 1 → 2 → 4 (3 and 4 each in their own wrapper
+                 so they can be hidden independently in 2-deck mode without
+                 affecting the 1/2 sizing; the inter-block dividers that
+                 involve 3 or 4 are also bound to show_4decks so no orphan
+                 lines appear in 2-deck mode). -->
+            <Children>
+              <!-- DECK 3 — top in 4-deck mode, hidden in 2-deck mode -->
+              <WidgetGroup>
+                <ObjectName>SidebarBlock3</ObjectName>
+                <Layout>vertical</Layout>
+                <Size>110f,0me</Size>
+                <Children>
+                  <Template src="skin:sidebar_deck_info.xml">
+                    <SetVariable name="channel">3</SetVariable>
+                  </Template>
+                </Children>
+                <Connection>
+                  <ConfigKey>[Skin],show_4decks</ConfigKey>
+                  <BindProperty>visible</BindProperty>
+                </Connection>
+              </WidgetGroup>
+              <!-- Divider between 3 and 1 — only visible in 4-deck mode -->
+              <WidgetGroup>
+                <Size>110f,2f</Size>
+                <Style>background-color: #2e2e34;</Style>
+                <Connection>
+                  <ConfigKey>[Skin],show_4decks</ConfigKey>
+                  <BindProperty>visible</BindProperty>
+                </Connection>
+              </WidgetGroup>
+              <!-- DECK 1 — always visible -->
+              <Template src="skin:sidebar_deck_info.xml">
+                <SetVariable name="channel">1</SetVariable>
+              </Template>
+              <!-- Divider between 1 and 2 — always visible -->
+              <WidgetGroup>
+                <Size>110f,2f</Size>
+                <Style>background-color: #2e2e34;</Style>
+              </WidgetGroup>
+              <!-- DECK 2 — always visible -->
+              <Template src="skin:sidebar_deck_info.xml">
+                <SetVariable name="channel">2</SetVariable>
+              </Template>
+              <!-- DECK 4 — bottom in 4-deck mode, hidden in 2-deck mode -->
+              <WidgetGroup>
+                <ObjectName>SidebarBlock4</ObjectName>
+                <Layout>vertical</Layout>
+                <Size>110f,0me</Size>
+                <Children>
+                  <WidgetGroup>
+                    <Size>110f,2f</Size>
+                    <Style>background-color: #2e2e34;</Style>
+                  </WidgetGroup>
+                  <Template src="skin:sidebar_deck_info.xml">
+                    <SetVariable name="channel">4</SetVariable>
+                  </Template>
+                </Children>
+                <Connection>
+                  <ConfigKey>[Skin],show_4decks</ConfigKey>
+                  <BindProperty>visible</BindProperty>
+                </Connection>
+              </WidgetGroup>
+            </Children>
+          </WidgetGroup>
+
+          <!-- CENTER — big waveforms only -->
+          <WidgetGroup>
+            <ObjectName>Waveforms_Container</ObjectName>
+            <Layout>horizontal</Layout>
+            <Size>0me,0me</Size>
+            <Children>
+              <Template src="skin:waveforms.xml"></Template>
+            </Children>
+          </WidgetGroup>
+
+          <!-- RIGHT SIDEBAR — Beat FX (EffectRack1_EffectUnit1), previously
+               written in effects.xml/effect.xml but never wired in anywhere -->
+          <Template src="skin:effects.xml"></Template>
+
+        </Children>
+      </WidgetGroup>
+
+      <!-- BOTTOM — per-deck track info + mini overview, FULL WIDTH
+           (edge-to-edge, underneath both sidebars). 2 rows: row A (1/2)
+           always visible; row B (3/4) only in 4-deck mode — when hidden,
+           row A alone fills the space exactly like before (no duplicated
+           channel 1/2 widgets needed). -->
+      <!-- NOTE: in this skin's Size parser, the number for any non-"f"
+           (non-Fixed) policy is applied via setMinimumHeight(), even for
+           "Nmax" — "max" only constrains the SizePolicy (never grow past
+           sizeHint), it does NOT cap the number as a true maximum. So
+           DecksGrid itself must NOT carry an explicit number here, or it
+           would force a permanent minimum height regardless of which rows
+           are visible (this was the actual cause of the persistent empty
+           gap in 2-deck mode) — let it be a plain pass-through and let the
+           rows below (each correctly "Nmax"-sized to their own content)
+           sum naturally. -->
+      <WidgetGroup>
+        <ObjectName>DecksGrid</ObjectName>
+        <Layout>vertical</Layout>
+        <Size>0me,0max</Size>
+        <Children>
+          <WidgetGroup>
+            <ObjectName>Decks</ObjectName>
+            <Layout>horizontal</Layout>
+            <Size>0me,100max</Size>
+            <Children>
+              <Template src="skin:deck.xml">
+                <SetVariable name="channel">1</SetVariable>
+              </Template>
+              <Template src="skin:deck.xml">
+                <SetVariable name="channel">2</SetVariable>
+              </Template>
+            </Children>
+          </WidgetGroup>
+          <WidgetGroup>
+            <ObjectName>Decks34</ObjectName>
+            <Layout>horizontal</Layout>
+            <Size>0me,100max</Size>
+            <Children>
+              <Template src="skin:deck.xml">
+                <SetVariable name="channel">3</SetVariable>
+              </Template>
+              <Template src="skin:deck.xml">
+                <SetVariable name="channel">4</SetVariable>
+              </Template>
+            </Children>
+            <Connection>
+              <ConfigKey>[Skin],show_4decks</ConfigKey>
+              <BindProperty>visible</BindProperty>
+            </Connection>
+          </WidgetGroup>
+        </Children>
+      </WidgetGroup>
+
+    </Children>
+  </WidgetGroup>
+</Template>

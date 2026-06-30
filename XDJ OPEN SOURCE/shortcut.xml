@@ -1,0 +1,133 @@
+<Template>
+    <WidgetGroup>
+        <ObjectName>ShortcutPanel</ObjectName>
+        <Size>0me,0me</Size>
+        <Layout>vertical</Layout>
+        <Children>
+
+        <WidgetGroup>
+          <ObjectName>ShortcutControls</ObjectName>
+          <Layout>vertical</Layout>
+          <Size>0me,0me</Size>
+          <Children>
+
+            <!-- DECKS — Expanding: absorbs all surplus height, content
+                 centered vertically inside via equal top/bottom spacers -->
+            <WidgetGroup>
+              <ObjectName>ShortcutSectionDecks</ObjectName>
+              <Layout>vertical</Layout>
+              <Size>0me,0me</Size>
+              <Children>
+                <WidgetGroup><Size>0me,0me</Size></WidgetGroup>
+                <Label>
+                  <ObjectName>ShortcutSectionTitle</ObjectName>
+                  <Text>DECKS</Text>
+                  <Size>me,22f</Size>
+                </Label>
+                <WidgetGroup>
+                  <ObjectName>DecksModeButtons</ObjectName>
+                  <Layout>horizontal</Layout>
+                  <Size>me,65f</Size>
+                  <Children>
+                    <PushButton>
+                      <ObjectName>DecksModeBtn</ObjectName>
+                      <NumberStates>2</NumberStates>
+                      <Size>me,55f</Size>
+                      <State><Number>0</Number><Text>2 DECKS</Text></State>
+                      <State><Number>1</Number><Text>2 DECKS</Text></State>
+                      <Connection>
+                        <ConfigKey>[Skin],show_4decks</ConfigKey>
+                        <Transform><Not/></Transform>
+                      </Connection>
+                    </PushButton>
+                    <WidgetGroup><Size>8f,55f</Size></WidgetGroup>
+                    <PushButton>
+                      <ObjectName>DecksModeBtn</ObjectName>
+                      <NumberStates>2</NumberStates>
+                      <Size>me,55f</Size>
+                      <State><Number>0</Number><Text>4 DECKS</Text></State>
+                      <State><Number>1</Number><Text>4 DECKS</Text></State>
+                      <Connection>
+                        <ConfigKey>[Skin],show_4decks</ConfigKey>
+                      </Connection>
+                    </PushButton>
+                  </Children>
+                </WidgetGroup>
+                <WidgetGroup><Size>0me,0me</Size></WidgetGroup>
+              </Children>
+            </WidgetGroup>
+
+            <!-- Separator -->
+            <WidgetGroup>
+              <ObjectName>ShortcutColumnDivider</ObjectName>
+              <Size>0me,1f</Size>
+            </WidgetGroup>
+
+            <!-- RECORDING — fixed height at bottom, content centered inside -->
+            <WidgetGroup>
+              <ObjectName>ShortcutSectionRec</ObjectName>
+              <Layout>vertical</Layout>
+              <Size>0me,130f</Size>
+              <Children>
+                <WidgetGroup><Size>0me,0me</Size></WidgetGroup>
+                <Label>
+                  <ObjectName>ShortcutSectionTitle</ObjectName>
+                  <Text>RECORDING</Text>
+                  <Size>me,22f</Size>
+                </Label>
+                <WidgetGroup>
+                  <ObjectName>RecordingButtons</ObjectName>
+                  <Layout>horizontal</Layout>
+                  <Size>me,65f</Size>
+                  <Children>
+                    <PushButton>
+                      <ObjectName>RecordingToggleBtn</ObjectName>
+                      <NumberStates>4</NumberStates>
+                      <Size>me,55f</Size>
+                      <State><Number>0</Number><Text>START REC</Text></State>
+                      <State><Number>1</Number><Text>STOP REC</Text></State>
+                      <State><Number>2</Number><Text>STOP REC</Text></State>
+                      <State><Number>3</Number><Text>STOP REC</Text></State>
+                      <Connection>
+                        <ConfigKey>[Recording],toggle_recording</ConfigKey>
+                      </Connection>
+                      <Connection>
+                        <ConfigKey>[Recording],status</ConfigKey>
+                        <ConnectValueFromWidget>false</ConnectValueFromWidget>
+                      </Connection>
+                    </PushButton>
+                    <WidgetGroup><Size>8f,55f</Size></WidgetGroup>
+                    <RecordingDuration>
+                      <ObjectName>ShortcutRecDuration</ObjectName>
+                      <Size>me,55f</Size>
+                      <InactiveText>00:00:00</InactiveText>
+                      <Alignment>center</Alignment>
+                      <Connection>
+                        <ConfigKey>[Recording],status</ConfigKey>
+                        <BindProperty>highlight</BindProperty>
+                      </Connection>
+                    </RecordingDuration>
+                  </Children>
+                </WidgetGroup>
+                <WidgetGroup><Size>0me,0me</Size></WidgetGroup>
+              </Children>
+            </WidgetGroup>
+
+          </Children>
+        </WidgetGroup>
+
+        <!-- Mini decks at the bottom -->
+        <WidgetGroup>
+          <ObjectName>Decks</ObjectName>
+          <Layout>horizontal</Layout>
+          <Size>0me,110max</Size>
+          <Children>
+            <Template src="skin:deckminimal.xml">
+              <SetVariable name="channel">1</SetVariable>
+            </Template>
+          </Children>
+        </WidgetGroup>
+
+        </Children>
+    </WidgetGroup>
+</Template>

@@ -1,0 +1,172 @@
+<!-- Beat FX panel (CDJ-style): a SINGLE effect slot (EffectRack1_EffectUnit1
+     Effect1 only), with channel-select and the beat-subdivision knob —
+     matches the Pioneer reference's single "FLANGER" + "CH SELECT" + beat
+     readout panel, not the 3-slots-per-unit Traktor-style layout. -->
+<Template>
+  <WidgetGroup>
+    <ObjectName>BeatFX_Container</ObjectName>
+    <Layout>vertical</Layout>
+    <Size>145max,0me</Size>
+    <Children>
+
+      <!-- Library/Browse navigation now lives in the topbar (next to the
+           gear icon) so it stays available from both Overview and Library
+           — no longer duplicated here. -->
+
+      <!-- Centered title on a greyish background band, like the RX3 ref -->
+      <WidgetGroup>
+        <ObjectName>BeatFX_Header</ObjectName>
+        <Layout>vertical</Layout>
+        <Size>0me,16f</Size>
+        <Children>
+          <Label>
+            <ObjectName>BeatFX_Title</ObjectName>
+            <Text>BEAT FX</Text>
+            <Alignment>center</Alignment>
+          </Label>
+        </Children>
+      </WidgetGroup>
+
+      <!-- Effect name (dropdown), right under the title -->
+      <EffectSelector>
+        <ObjectName>EffectSelector</ObjectName>
+        <EffectRack>1</EffectRack>
+        <EffectUnit>1</EffectUnit>
+        <Effect>1</Effect>
+        <Elide>right</Elide>
+        <Size>0me,30max</Size>
+      </EffectSelector>
+
+      <!-- Master FX level -->
+      <VuMeter>
+        <ObjectName>EffectMeter</ObjectName>
+        <Size>0me,6max</Size>
+        <PathBack scalemode="STRETCH">icons/effect_meter_bg.png</PathBack>
+        <PathVu scalemode="STRETCH">icons/effect_meter_fg.png</PathVu>
+        <Horizontal>true</Horizontal>
+        <PeakHoldSize>0</PeakHoldSize>
+        <PeakHoldTime>0</PeakHoldTime>
+        <PeakFallTime>0</PeakFallTime>
+        <PeakFallStep>0</PeakFallStep>
+        <Connection>
+          <ConfigKey>[EffectRack1_EffectUnit1],mix</ConfigKey>
+        </Connection>
+      </VuMeter>
+
+      <!-- CH SELECT — assign the Beat FX unit to deck 1, deck 2, or MASTER
+           (both at once) -->
+      <WidgetGroup>
+        <ObjectName>BeatFX_ChSelectLabel</ObjectName>
+        <Layout>horizontal</Layout>
+        <Size>0me,14f</Size>
+        <Children>
+          <Label>
+            <ObjectName>BeatFX_ChSelectTitle</ObjectName>
+            <Text>CH SELECT</Text>
+            <Alignment>center</Alignment>
+          </Label>
+        </Children>
+      </WidgetGroup>
+      <WidgetGroup>
+        <ObjectName>BeatFX_ChSelectRow</ObjectName>
+        <Layout>horizontal</Layout>
+        <Size>0me,24max</Size>
+        <Children>
+          <PushButton>
+            <ObjectName>BeatFX_Ch1</ObjectName>
+            <Size>0me,18max</Size>
+            <NumberStates>2</NumberStates>
+            <State><Number>0</Number><Text>1</Text></State>
+            <State><Number>1</Number><Text>1</Text></State>
+            <Connection>
+              <ConfigKey>[EffectRack1_EffectUnit1],group_[Channel1]_enable</ConfigKey>
+            </Connection>
+          </PushButton>
+          <PushButton>
+            <ObjectName>BeatFX_Ch2</ObjectName>
+            <Size>0me,18max</Size>
+            <NumberStates>2</NumberStates>
+            <State><Number>0</Number><Text>2</Text></State>
+            <State><Number>1</Number><Text>2</Text></State>
+            <Connection>
+              <ConfigKey>[EffectRack1_EffectUnit1],group_[Channel2]_enable</ConfigKey>
+            </Connection>
+          </PushButton>
+          <PushButton>
+            <ObjectName>BeatFX_ChMaster</ObjectName>
+            <Size>0me,18max</Size>
+            <NumberStates>2</NumberStates>
+            <State><Number>0</Number><Text>MSTR</Text></State>
+            <State><Number>1</Number><Text>MSTR</Text></State>
+            <!-- Sets all channels on click but never mirrors any one's
+                 state back onto the widget (all ConnectValueToWidget=false)
+                 — otherwise MSTR would visually light up whenever Channel1
+                 alone gets enabled by the "1" button, which is the bug this
+                 fixes. MSTR keeps its own independent click-toggle state.
+                 Includes Channel3/4 too (harmless if those decks are
+                 hidden — they're still real engine channels). -->
+            <Connection>
+              <ConfigKey>[EffectRack1_EffectUnit1],group_[Channel1]_enable</ConfigKey>
+              <ConnectValueToWidget>false</ConnectValueToWidget>
+            </Connection>
+            <Connection>
+              <ConfigKey>[EffectRack1_EffectUnit1],group_[Channel2]_enable</ConfigKey>
+              <ConnectValueToWidget>false</ConnectValueToWidget>
+            </Connection>
+            <Connection>
+              <ConfigKey>[EffectRack1_EffectUnit1],group_[Channel3]_enable</ConfigKey>
+              <ConnectValueToWidget>false</ConnectValueToWidget>
+            </Connection>
+            <Connection>
+              <ConfigKey>[EffectRack1_EffectUnit1],group_[Channel4]_enable</ConfigKey>
+              <ConnectValueToWidget>false</ConnectValueToWidget>
+            </Connection>
+          </PushButton>
+        </Children>
+      </WidgetGroup>
+
+      <!-- Decks 3/4 channel-select row — only shown in 4-deck mode.
+           A trailing spacer (same 0me expanding weight as BeatFX_ChMaster
+           above) ensures buttons 3/4 are identical width to buttons 1/2,
+           aligned column-by-column. -->
+      <WidgetGroup>
+        <ObjectName>BeatFX_ChSelectRow34</ObjectName>
+        <Layout>horizontal</Layout>
+        <Size>0me,24max</Size>
+        <Children>
+          <PushButton>
+            <ObjectName>BeatFX_Ch3</ObjectName>
+            <Size>0me,18max</Size>
+            <NumberStates>2</NumberStates>
+            <State><Number>0</Number><Text>3</Text></State>
+            <State><Number>1</Number><Text>3</Text></State>
+            <Connection>
+              <ConfigKey>[EffectRack1_EffectUnit1],group_[Channel3]_enable</ConfigKey>
+            </Connection>
+          </PushButton>
+          <PushButton>
+            <ObjectName>BeatFX_Ch4</ObjectName>
+            <Size>0me,18max</Size>
+            <NumberStates>2</NumberStates>
+            <State><Number>0</Number><Text>4</Text></State>
+            <State><Number>1</Number><Text>4</Text></State>
+            <Connection>
+              <ConfigKey>[EffectRack1_EffectUnit1],group_[Channel4]_enable</ConfigKey>
+            </Connection>
+          </PushButton>
+          <WidgetGroup><Size>0me,18max</Size></WidgetGroup>
+        </Children>
+        <Connection>
+          <ConfigKey>[Skin],show_4decks</ConfigKey>
+          <BindProperty>visible</BindProperty>
+        </Connection>
+      </WidgetGroup>
+
+      <Template src="skin:effect.xml">
+        <SetVariable name="rack">1</SetVariable>
+        <SetVariable name="unit">1</SetVariable>
+        <SetVariable name="effect">1</SetVariable>
+      </Template>
+    </Children>
+  </WidgetGroup>
+</Template>

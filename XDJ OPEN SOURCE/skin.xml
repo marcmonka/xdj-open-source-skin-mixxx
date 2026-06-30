@@ -1,0 +1,121 @@
+<skin>
+	<manifest>
+		<title>XDJ OPEN SOURCE</title>
+		<author>Marc Monka</author>
+		<version>1.0</version>
+		<description>Skin for a 2 or 4 decks controller. A lookalike Pioneer DJ / Alphatheta standalone player style. </description>
+		<language>*</language>
+		<license>GPL</license>
+		<attributes>
+			<attribute config_key="[Master],num_decks">4</attribute>
+			<attribute config_key="[Master],num_samplers">0</attribute>
+			<attribute persist="true" config_key="[Master],maximize_library">0</attribute>
+			<attribute persist="true" config_key="[Master],skin_settings">0</attribute>
+			<attribute persist="true" config_key="[Microphone],show_microphone">0</attribute>
+			<attribute persist="true" config_key="[VinylControl],show_vinylcontrol">0</attribute>
+			<attribute persist="true" config_key="[PreviewDeck],show_previewdeck">0</attribute>
+			<attribute persist="true" config_key="[Library],show_coverart">0</attribute>
+			<attribute persist="true" config_key="[Skin],waveform_color_mode">0</attribute>
+			<attribute persist="true" config_key="[Skin],show_4decks">0</attribute>
+		</attributes>
+	</manifest>
+
+	<ObjectName>Mixxx</ObjectName>
+	<Style src="skin:style.qss"/>
+	<MinimumSize>480,420</MinimumSize>
+	<SizePolicy>me,me</SizePolicy>
+	<Layout>vertical</Layout>
+
+	<LaunchImageStyle>
+	  LaunchImage {
+		background-color:#000;
+		}
+	  QLabel {
+	    image: url(skin:/images/xdjopensource_logo.png);
+		border:none;
+		min-width:450px;
+		max-width:450px;
+		min-height:150px;
+		max-height:150px;
+		margin:0px 25px -30px 75px;
+
+	  }
+		QProgressBar {
+	    background-color: #262626;
+		border:none;
+		padding:0;
+		min-width:600px;
+		max-width:600px;
+		max-height: 4px;
+		max-height: 4px;
+		
+	  }
+
+	  QProgressBar::chunk {
+	    background-color: #ffffff;
+	  }
+	</LaunchImageStyle>
+
+	<Children>
+		<SingletonDefinition>
+			<ObjectName>Shortcut_Singleton</ObjectName>
+			<Children>
+				<Template src="skin:shortcut.xml"/>
+			</Children>
+		</SingletonDefinition>
+		<SingletonDefinition>
+			<ObjectName>Topbar_Singleton</ObjectName>
+			<Children>
+				<Template src="skin:topbar.xml"/>
+			</Children>
+		</SingletonDefinition>
+		<SingletonDefinition>
+			<ObjectName>Overview_Singleton</ObjectName>
+			<Children>
+				<Template src="skin:overview.xml"/>
+			</Children>
+		</SingletonDefinition>
+		<SingletonDefinition>
+			<ObjectName>Library_Singleton</ObjectName>
+			<Children>
+				<Template src="skin:library.xml"/>
+			</Children>
+		</SingletonDefinition>
+		
+		
+
+		
+		
+
+		<WidgetGroup>
+			<ObjectName>SkinContainer</ObjectName>
+			<Layout>vertical</Layout>
+			<SizePolicy>me,me</SizePolicy>
+			<Children>
+				<WidgetGroup>
+					<Layout>vertical</Layout>
+					<SizePolicy>me,me</SizePolicy>
+					<Children>
+						<SingletonContainer>
+							<ObjectName>Topbar_Singleton</ObjectName>
+							
+						</SingletonContainer>
+						<WidgetStack currentpage="[Tab],current">
+							<Children>
+								<SingletonContainer trigger="[Tab],overview">
+									<ObjectName>Overview_Singleton</ObjectName>
+								</SingletonContainer>
+								<SingletonContainer trigger="[Tab],library" on_hide_select="0">
+									<ObjectName>Library_Singleton</ObjectName>
+								</SingletonContainer>
+								<SingletonContainer trigger="[Tab],shortcut" on_hide_select="0">
+									<ObjectName>Shortcut_Singleton</ObjectName>
+								</SingletonContainer>
+							</Children>
+						</WidgetStack>
+					</Children>
+				</WidgetGroup>
+			</Children>
+		</WidgetGroup>
+	</Children>
+</skin>

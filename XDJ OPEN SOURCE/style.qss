@@ -1,0 +1,1008 @@
+/* Pioneer Colours:
+
+Play button: #6ee128
+Cue button: #eb870f
+Slip button: #d73535
+Tabs on top: #c3d541
+Headers: #32323c
+Title bg: #112f5c
+Blue: #2d85cd
+White: #e5e6ea
+
+*/
+
+
+#Mixxx {
+  background-color: #000;
+}
+
+*{
+  font-family: 'Helvetica Neue', sans-serif;
+}
+
+QMenuBar, QMenuBar::item, QMenu, QMenu::item {
+  background-color: black;
+  color: gray;
+}
+
+QMenuBar::item:pressed, QMenu::item:selected, QMenu::item:pressed {
+    background-color: rgba(255,255,255,0.2);
+}
+
+/************************************************************************/
+/*     Buttons                                                          */
+/************************************************************************/
+
+WPushButton {
+  color: #e5e6ea;
+  background-color: transparent;
+  border: 1px solid #e5e6ea;
+  border-radius: 2px;
+  outline: none;
+}
+
+WPushButton[value="1"] {
+  color: #d73535;
+  border-color: #d73535;
+  
+}
+
+
+
+/************************************************************************/
+/*     Deck                                                             */
+/************************************************************************/
+
+#Deck {
+  border: 6px solid transparent;
+  border-radius: 2px;
+}
+#DeckMinimal{
+  border:5px solid transparent;
+  border-radius:2px;
+  padding-left:0px;
+  padding-right:5px;
+  
+}
+
+#DeckBPMWrapper {
+  border: 1px solid #e5e6ea;
+  border-radius: 2px;
+  margin-bottom: 0px;
+  padding-right: 0px;
+  padding-left: 0px;
+  qproperty-layoutAlignment: 'AlignHCenter| AlignVCenter';
+}
+
+/* Sync leader ("master") — whole BPM box turns orange */
+#DeckBPMWrapper[highlight="1"] {
+  border-color: #f87021;
+  background-color: #3a2410;
+}
+
+#DeckBPMWrapperminimal{
+  border: 1px solid #e5e6ea;
+  border-radius: 2px;
+
+}
+
+
+#DeckBPMminimal, #DeckBPMMasterMinimal {
+  padding-left:0px;
+  font-size:25px;
+  font-weight:300;
+}
+
+#DeckBPMMasterMinimal {
+  color: #f87021;
+}
+
+
+
+#DeckBPMTitleWrapper {
+  qproperty-layoutAlignment: 'AlignLeft | AlignVCenter';
+}
+
+#DeckBPMTitle {
+  padding-top:1px;
+  font-size: 8px;
+  font-weight: 400;
+}
+
+#DeckBPMTitleSync {
+  padding-top: 1px;
+  font-size: 8px;
+  font-weight: 700;
+  color: #3478f2;
+}
+
+/* Opaque so it fully covers "BEAT SYNC" underneath when this deck becomes
+   the sync leader (both can technically be visible at once — becoming
+   leader also sets sync_enabled=true) — see Layout=stacked note in
+   deck.xml. */
+#DeckBPMTitleMaster {
+  padding-top: 1px;
+  font-size: 8px;
+  font-weight: 700;
+  color: #1a1a1f;
+  background-color: #f87021;
+}
+
+#DeckBPM, #DeckBPMMaster {
+  padding-left:2px;
+  font-size: 15px;
+  font-weight:300;
+}
+
+#DeckBPMMaster {
+  color: #f87021;
+}
+
+#TrackBPMRangeContainer {
+  margin-right: 50px;
+  padding: 5px;
+  qproperty-layoutAlignment: 'AlignHCenter | AlignTop';
+}
+#TrackBPMRangeContainerMinimal {
+  margin-right: 5px;
+  padding: 0;
+  qproperty-layoutAlignment: 'AlignRight | AlignVCenter';
+}
+
+#DeckBPMRangePercent {
+  background-color: #fff;
+  padding: 0 10px 0 10px;
+}
+#DeckBPMRangePercentMinimal {
+  background-color: #fff;
+  padding: 0 5px 0 5px;
+  margin:0 5px 0 5px;
+}
+#TempoName{
+  color:#fff;
+  margin-right:20px;
+
+}
+
+#BPMRangePlusMinus, #RateDisplay {
+    font-size: 9px;
+    font-weight: 300;
+    color:#000;
+}
+#BPMRangePlusMinusMinimal, #RateDisplayMinimal {
+    font-size: 14px;
+    font-weight: 300;
+    color:#000;
+}
+
+#PitchCurrent{
+  font-size:15px;
+  font-weight:200;
+}
+#BPMPercent{
+  font-size:9px;
+  font-weight:300;
+}
+#PitchCurrentMinimal{
+  font-size:20px;
+  font-weight:200;
+  margin-top:5px;
+}
+
+#KeyInfoMinimal{
+  font-size:14px;
+  font-weight:300;
+  margin-top:5px;
+
+}
+
+
+
+
+#DeckHeader {
+  background-color: #112f5c;
+  padding: 2px;
+}
+
+
+
+#DeckTitle, #DeckTitleNote {
+  font-size: 20px;
+}
+
+#DeckTitleNote {
+  margin: 0 2px;
+}
+
+#MasterTempo, #BeatJumps{
+  color:#fff;
+  border: 1px solid #e5e6ea;
+  border-radius: 2px;
+  qproperty-alignment: 'AlignCenter';
+  margin: 5px 0 5px 0;
+}
+
+#MasterTempo{
+  font-size:8px;
+}
+#Mode1, #Mode2, #Mode3, #Mode4, #Mode5, #Mode6{
+  font-size:9px;
+  color:#fff;
+  border-radius:2px;
+  qproperty-alignment: 'AlignCenter';
+  margin:10px 5px 10px 5px;
+}
+#Mode1{
+  background-color:#0551cc;
+
+}
+#Mode2{
+  background-color:#a45f26;
+
+}
+#Mode3{
+  background-color:#d73535;
+}
+#Mode4{
+  background-color:#f87021;
+}
+#Mode5{
+  background-color:#3478f2;
+}
+#Mode6{
+  background-color:green;
+}
+
+#MasterTempoMinimal{
+  color:#fff;
+  border:1px solid #e5e6ea;
+  border-radius:2px;
+  qproperty-alignment:'AlignCenter';
+  margin: 2px 0 2px 0;
+}
+
+#MasterTempo[highlight="1"], #MasterTempoMinimal[highlight="1"]{
+  color: #d73535;
+  border-color: #d73535;
+}
+
+#KeyTitle, #KeyInfo{
+  color:#fff;
+  font-weight:400;
+}
+#KeyTitle{
+  margin-top:5px;
+  font-size:12px;
+  
+}
+#KeyInfo{
+  font-size:12px;
+}
+
+
+
+#DeckChannelTitle, #DeckTrackTimeTitle, #DeckTempoTitle {
+  font-size: 10px;
+  font-weight: 400;
+  text-transform: uppercase;
+
+}
+
+#DeckName{
+  font-size:8px;
+}
+
+#DeckPlaying {
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+
+
+
+#DeckTrackTime {
+
+  font-size: 20px;
+  font-weight:300;
+}
+
+#DeckTrackTime[highlight="1"] {
+  color: transparent;
+}
+
+#DeckTrackTimeMinimal{
+  font-size:19px;
+  font-weight:300;
+  margin-left:2px;
+}
+
+#DeckTrackTimeMini {
+  font-size: 20px;
+}
+
+#DeckTrackTimeMini[highlight="1"] {
+  color: transparent;
+}
+
+#DeckTrackNumberContainer {
+  margin: 0 4px;
+  qproperty-layoutAlignment: 'AlignHCenter | AlignTop';
+}
+
+#TrackNumberWrapper {
+  qproperty-layoutAlignment: 'AlignHCenter | AlignVCenter';
+}
+
+#TrackNumberTitle {
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+#TrackNumber {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#DeckOverviewContainer{
+  padding: 0 10px 0 10px;
+  margin-top:0;
+}
+
+#DeckOverviewContainerMinimal{
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#BeatJumpSizeDisplay{
+  color:#fff;
+  font-size:15px;
+  font-weight:300;
+  border:none;
+}
+
+#BeatJumpName, #BeatJumpSizeDisplay, #DeckTrackTimeTitle, #DeckTrackTimeMini, #DeckTrackTime{
+  qproperty-alignment: 'AlignCenter';
+}
+#BeatJumpName{
+  margin-top:5px;
+  font-size:10px;
+}
+#BeatJumps{
+  margin-top:30%;
+  
+}
+
+#DeckTrackTime{
+  font-size:22px;
+  font-weight:300;
+}
+
+#TitleText{
+  font-size:20px;
+}
+#DurationText{
+  font-size:13px;
+}
+#ArtistText{
+  font-size:15px;
+  font-weight:200;
+}
+
+#TrackInfo, #TrackInfoText{
+  margin-left:25%;
+}
+
+
+
+/************************************************************************/
+/*     Library                                                          */
+/************************************************************************/
+
+#LibraryWrapper QScrollBar {
+  background-color: #262626;
+}
+
+#LibraryWrapper QScrollBar::handle:horizontal {
+  border: 0;
+}
+
+#LibraryWrapper QScrollBar:horizontal {
+  height: 0;
+  width: 0;
+}
+
+#LibraryWrapper QScrollBar:vertical {
+  border: 0;
+  width: 4px;
+}
+
+#LibraryWrapper QScrollBar::add-page,
+#LibraryWrapper QScrollBar::sub-page {
+  background-color: black;
+}
+
+#LibraryWrapper QScrollBar::add-line,
+#LibraryWrapper QScrollBar::sub-line {
+  height: 0;
+  width: 0;
+}
+
+#LibraryWrapper WTrackTableViewHeader::section {
+  background-color: #262626;
+  color: #e5e6ea;
+  font-weight: 400;
+  margin: 2px;
+  text-transform: uppercase;
+  font-size:14px;
+}
+
+#LibraryWrapper QTableView,
+#LibraryWrapper WLibraryTextBrowser {
+  background-color: #181818;
+  alternate-background-color: #262626;
+  selection-background-color: #3478f2;
+  color: #fff;
+  selection-color: #fff;
+  font-size:18px;
+  font-weight:300;
+  row-height:50px;
+}
+
+#LibraryWrapper WLibrarySidebar {
+  background-color: #181818;
+  selection-background-color: #3478f2;
+  border-right: 4px solid gray;
+  color: #fff;
+  font-weight: 400;
+  selection-color: #fff;
+  text-transform: uppercase;
+  font-size:18px;
+}
+
+#LibraryWrapper QPushButton,
+#LibraryWrapper QSpinBox,
+#LibraryWrapper QComboBox,
+#LibraryWrapper QComboBox QAbstractScrollArea {
+  background-color: #181818;
+  color: #fff;
+}
+
+WLabel {
+  /* Fallback for any WLabel-family widget (WLabel/Key/NumberPos/NumberBpm/
+     NumberRate/RateRange/TrackProperty all extend WLabel) that ISN'T
+     individually wired to [Skin],day_mode below — medium-light grey reads
+     reasonably on both the dark (night) and light (day) page background,
+     so nothing goes fully invisible. Widgets with their own explicit
+     "#Foo[highlight="1"]" day-mode rule still take priority (ID selectors
+     beat this plain type selector). */
+  color: #c7c7cf;
+}
+
+/* Library Search */
+#SearchBox {
+  background-color: #181818;
+  border-radius: 0;
+  font-size: 15px;
+  font-weight: 300;
+  padding: 4px;
+  text-transform: uppercase;
+}
+
+/* Sidebar (track/playlist) */
+#SidebarContainer {
+  background-color: #181818;
+}
+#SidebarButton{
+  background-color: #262626;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0;
+  border:none;
+  border-bottom:2px solid #585858;
+}
+#SidebarButton[value="1"]{
+  background-color: #547ecb;
+  border:none;
+}
+
+
+
+/************************************************************************/
+/*     Waveforms                                                        */
+/************************************************************************/
+
+#WaveformInfo {
+  margin-right: 10px;
+}
+
+
+#WaveformInfo_Header {
+  background-color: #000;
+  border-top-right-radius: 10px 25px;
+  padding-right: 2px;
+}
+
+#WaveformInfo_Header[highlight="1"] {
+  border: 2px solid #e5e6ea;
+}
+
+#WaveformInfo_Title,
+#WaveformInfo_Key,
+#WaveformInfo_Bars {
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+#WaveformInfo_Data_Container,
+#WaveformInfo_Key_Container,
+#WaveformInfo_Bars_Container,
+#WaveformInfo_Loopsize_Container {
+  qproperty-layoutAlignment: 'AlignLeft | AlignTop';
+}
+
+#WaveformInfo_Key_Icon {
+  background-color: #000;
+  border-radius: 2px;
+  font-size: 14px;
+  margin: 4px;
+  padding: -6px -6px -3px -2px;
+}
+
+#WaveformInfo_Loop_Icon {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 2px;
+}
+
+#WaveformInfo_BeatloopSizeSpinBox {
+  margin: 3px;
+  padding: -4px -4px 0px -8px;
+}
+
+WBeatSpinBox {
+  color: #ffffff;
+  font-size: px;
+  font-weight: bold;
+  background-color: #000000;
+}
+
+WBeatSpinBox::down-arrow,
+WBeatSpinBox::up-arrow,
+WBeatSpinBox::down-button,
+WBeatSpinBox::up-button {
+  width: 0px;
+  height: 0px;
+  color: #000000;
+  background-color: #000000;
+}
+
+#WaveformInfo_KeylockButton {
+  image: url(skin:icons/keylock.svg) no-repeat center center;
+}
+
+#WaveformInfo_QuantizeButton {
+  image: url(skin:icons/quantize.svg) no-repeat center center;
+}
+
+/************************************************************************/
+/*     Tabs                                                             */
+/************************************************************************/
+
+#FonsBarra, #DeckMetadata{
+  background-color:#181818;
+}
+
+/* Topbar contents — clock, recording indicator, master VU meter */
+#TopbarClock {
+  color: #e5e6ea;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+#TopbarRecDuration {
+  color: #6a6a80;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+#TopbarRecDuration[highlight="1"], #TopbarRecDuration[highlight="2"], #TopbarRecDuration[highlight="3"] {
+  color: #d73535;
+}
+
+/* Small recording indicator circle — grey idle, red while actually
+   recording (status 2=ON, 3=SPLIT_CONTINUE; 1=READY also covered) */
+#TopbarRecCircle {
+  color: #4e4e56;
+  font-size: 12px;
+}
+
+#TopbarRecCircle[highlight="1"], #TopbarRecCircle[highlight="2"], #TopbarRecCircle[highlight="3"] {
+  color: #d73535;
+}
+
+/* Library/Browse nav buttons in the topbar — much smaller than the
+   generic #TabControls WPushButton 25px (that size was meant for a single
+   glyph/short label, not "BROWSE"/"BACK") */
+/* Higher-specificity compound selector — needed because the generic
+   "#TabControls WPushButton{font-size:25px;font-weight:bold}" rule above
+   has the same ID-selector count plus an extra type selector, which beats
+   a plain "#NavBrowseBtn" ID selector under Qt's CSS specificity rules. */
+#TabControls WPushButton#NavBrowseBtn,
+#TabControls WPushButton#NavBackBtn {
+  font-size: 8px;
+  font-weight: 400;
+  border-radius: 0;
+}
+
+#TabControls{
+  background-color:#181818;
+  
+}
+
+
+
+
+#TrackMetadata{
+  margin-left:20px;
+}
+
+#TabControls WPushButton{
+  background-color: #262626;
+  font-weight: bold;
+  font-size:25px;
+}
+
+#RightButtons WPushButton{
+  padding:50px;
+  color:white;
+  font-size:15px;
+  
+}
+
+
+#TabControls WPushButton[value="0"] {
+  border:none;
+  border-bottom: 2px solid #585858;
+  color: #fff;
+}
+
+#TabControls WPushButton[value="1"] {
+  border:none;
+  border-bottom: 2px solid #fff;
+  color: #fff;
+  background-color: #3478f2;
+}
+
+
+#HotCues WPushButton[value="0"], #KeyShift WPushButton[value="0"], #KeyShiftInfo, #Beatloop WPushButton[value="0"], #Stems WPushButton[value="0"]{
+background-image: url(skin:icons/button.png);
+background-repeat: repeat-xy;
+font-weight:400;
+}
+
+
+
+
+#Beatloop WPushButton{
+  border: 2px solid #f87021;
+  font:25px;
+  font-weight:400;
+}
+
+#Beatloop WPushButton[value="1"],  #Stems WPushButton[value="1"]{
+  background-image: url(skin:icons/button-loop.png);
+  background-repeat: repeat-xy;
+  color:#fff;
+
+}
+
+
+#HotCues WPushButton[value="1"], #KeyShift WPushButton[value="1"], #KeyShiftInfo WPushButton[value="1"]{
+  background-color: #efefefff;
+  border:none;
+  font-weight:400;
+}
+#HotCues WPushButton, #KeyShiftInfo, #Stems WPushButton{
+  border: 2px solid #c0ccba;
+  font-weight:800;
+}
+
+#HotCues WPushButton, #KeyShift WPushButton{
+  font-size:25px;
+  font-weight:bold;
+  color: #fff;
+}
+
+#Stems WPushButton{
+  font-size:20px;
+  font-weight:400;
+  color:#fff;
+}
+
+
+#SeparadorKey{
+  background-image: url(skin:icons/keyshiftseparator.png);
+  background-repeat: repeat-xy;
+}
+
+
+#KeyShiftInfo{
+background-repeat: repeat-xy;
+font-weight:400;;
+font-size:25px;
+
+}
+
+#KeyShiftInfo2, #PitchAdjustDisplay{
+  background-color:#fff;
+  color:#000;
+  font-size:15px;
+  font-weight:400;
+
+}
+
+#ResetKey WPushButton{
+  font-size:18px;
+  font-weight:400;
+  background-color:#e5e6ea;
+  color:#000;
+  border:none;
+  border-radius:0;
+}
+#ResetKey WPushButton[value="1"]{
+  color:#000;
+  border:none;
+  background-color:#585858;
+}
+
+
+/************************************************************************/
+/*     Shortcut Panel                                                   */
+/************************************************************************/
+
+#ShortcutPanel {
+  background-color: #0d0d0d;
+}
+
+#ShortcutControls {
+  background-color: #111111;
+  border-top: 1px solid #2a2a2a;
+  padding: 0px 20px;
+}
+
+#ShortcutColumnDivider {
+  background-color: #2a2a2a;
+}
+
+#ShortcutSection {
+  qproperty-layoutAlignment: 'AlignLeft | AlignVCenter';
+  padding: 5px 0;
+}
+
+#ShortcutSectionTitle {
+  color: #888888;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  qproperty-alignment: 'AlignLeft | AlignVCenter';
+}
+
+#DecksModeButtons WPushButton {
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 3px;
+  padding: 2px;
+}
+
+#RecordingButtons WPushButton {
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 3px;
+  padding: 2px;
+}
+
+#RecordingToggleBtn[value="1"], #RecordingToggleBtn[value="2"], #RecordingToggleBtn[value="3"] {
+  color: #ffffff;
+  background-color: #d73535;
+  border-color: #d73535;
+}
+
+#ShortcutRecDuration {
+  color: #6a6a80;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+#ShortcutRecDuration[highlight="1"], #ShortcutRecDuration[highlight="2"], #ShortcutRecDuration[highlight="3"] {
+  color: #d73535;
+}
+
+#DecksModeBtn[value="0"] {
+  color: #888888;
+  border: 1px solid #333333;
+  background-color: #1c1c1c;
+}
+
+#DecksModeBtn[value="1"] {
+  color: #ffffff;
+  border: 1px solid #3478f2;
+  background-color: #3478f2;
+}
+
+
+/************************************************************************/
+/*     Left sidebar deck info (sidebar_deck_info.xml)                   */
+/************************************************************************/
+
+/* Parent Sidebar container — its background shows in the gaps between
+   deck blocks (the margin areas around each SidebarDeckBlock). */
+#Sidebar {
+  background-color: #000000;
+}
+
+#SidebarDeckBlock {
+  background-color: #17171b;
+  margin: 3px 0px;
+}
+
+/* Header band (2-deck mode only) */
+#SidebarDeckHeader {
+  background-color: #2e2e34;
+}
+
+#SidebarDeckName {
+  color: #c7c7cf;
+  font-size: 11px;
+  font-weight: 400;
+}
+
+/* Horizontal divider under the 2-deck header */
+#SidebarHeaderDivider {
+  background-color: #15314d;
+}
+
+/* Deck number column (4-deck mode only, Column 2 on the right) */
+#SidebarDeckStrip {
+  background-color: #000000;
+  border: 1px solid #e5e6ea;
+  border-radius: 2px;
+  margin: 4px 5px 4px 3px;
+}
+
+/* PushButton used as display-only deck number — overrides the global
+   WPushButton defaults (border/bg) to match the strip style.
+   QPushButton supports text-align in Qt QSS (unlike WLabel alignment). */
+#SidebarDeckNumber {
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 300;
+  text-align: center;
+}
+
+/* sync_mode values: 1=Follower (blue), 2/3=Leader/Master (orange) */
+#SidebarDeckNumber[value="1"] {
+  color: #3478f2;
+}
+#SidebarDeckNumber[value="2"],
+#SidebarDeckNumber[value="3"] {
+  color: #f87021;
+}
+
+
+/* Thin divider between rows, same grey as the header band */
+#SidebarRowDivider {
+  background-color: #2e2e34;
+}
+
+/* Each content row (KEY/LOOP) — dark grey row background */
+#SidebarKeyRow, #SidebarLoopRow {
+  background-color: #1a1a1f;
+}
+
+#SidebarRowIcon {
+  color: #ffffff;
+  font-size: 17px;
+}
+
+#SidebarKeyInfo {
+  color: #e5e6ea;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+/* Loop arrow + size — white by default, orange while loop is active.
+   The spin box itself has no "highlight" property, so its color is driven
+   by its wrapper WidgetGroup's highlight via a descendant selector.
+   NOTE: this label's "highlight" is already taken by loop_enabled, so it
+   can't also bind [Skin],day_mode — in day mode this stays white (same
+   day/night-conflict tradeoff as MasterTempo/SidebarLoopSize elsewhere). */
+#SidebarLoopArrow {
+  color: #ffffff;
+  font-size: 18px;
+}
+
+#SidebarLoopArrow[highlight="1"] {
+  color: #eb870f;
+}
+
+#SidebarLoopSize, #BeatFXSizeSpinBox {
+  color: #e5e6ea;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: transparent;
+  border: none;
+}
+
+#SidebarLoopSizeWrapper[highlight="1"] #SidebarLoopSize {
+  color: #eb870f;
+}
+
+#SidebarLoopSize::down-arrow, #SidebarLoopSize::up-arrow,
+#SidebarLoopSize::down-button, #SidebarLoopSize::up-button,
+#BeatFXSizeSpinBox::down-arrow, #BeatFXSizeSpinBox::up-arrow,
+#BeatFXSizeSpinBox::down-button, #BeatFXSizeSpinBox::up-button {
+  width: 0px;
+  height: 0px;
+}
+
+/************************************************************************/
+/*     Beat FX panel (effects.xml / effect.xml)                         */
+/************************************************************************/
+
+#BeatFX_Container {
+  padding: 0px 18px;
+}
+
+#BeatFX_Header {
+  background-color: #32323c;
+}
+
+#BeatFX_Title {
+  color: #e5e6ea;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+#BeatFX_ChSelectTitle {
+  color: #8c8c94;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+#BeatFX_Ch1, #BeatFX_Ch2, #BeatFX_Ch3, #BeatFX_Ch4, #BeatFX_ChMaster {
+  color: #e5e6ea;
+  font-size: 9px;
+}
+
+#BeatFX_Ch1[value="1"], #BeatFX_Ch2[value="1"], #BeatFX_Ch3[value="1"], #BeatFX_Ch4[value="1"], #BeatFX_ChMaster[value="1"] {
+  color: #ffffff;
+  background-color: #2d85cd;
+  border-color: #2d85cd;
+}
+
+/* Effect name dropdown — big, uppercase, blue background like the RX3 ref.
+   Also flattens the native QComboBox bottom border (which otherwise shows
+   as a half-blue/half-black line). */
+#EffectSelector {
+  color: #ffffff;
+  background-color: #2d85cd;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: none;
+  padding: 2px 4px;
+}
+
+#EffectSelector::drop-down {
+  border: none;
+}

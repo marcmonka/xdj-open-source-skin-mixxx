@@ -1,0 +1,244 @@
+<!--
+  Left sidebar deck-info block.
+  - 2-deck mode: vertical — "DECK X" header at top, then KEY + LOOP rows.
+  - 4-deck mode: horizontal — Column 1: KEY + LOOP stacked; Column 2: deck
+    number spanning the full block height (black bg, white border/text).
+-->
+<Template>
+  <WidgetGroup>
+    <ObjectName>SidebarDeckBlock</ObjectName>
+    <Layout>vertical</Layout>
+    <Size>110f,0me</Size>
+    <Children>
+
+      <!-- ══ 2-DECK LAYOUT ══ vertical, classic header at top ══════════ -->
+      <WidgetGroup>
+        <ObjectName>SidebarDeckLayout2</ObjectName>
+        <Layout>vertical</Layout>
+        <Size>110f,0me</Size>
+        <Connection>
+          <ConfigKey>[Skin],show_4decks</ConfigKey>
+          <BindProperty>visible</BindProperty>
+          <Transform><Not/></Transform>
+        </Connection>
+        <Children>
+          <WidgetGroup>
+            <ObjectName>SidebarDeckHeader</ObjectName>
+            <Layout>horizontal</Layout>
+            <Size>110f,20f</Size>
+            <Children>
+              <WidgetGroup><Size>10f,20f</Size></WidgetGroup>
+              <Label>
+                <ObjectName>SidebarDeckName</ObjectName>
+                <Text>DECK </Text>
+              </Label>
+              <Label>
+                <ObjectName>SidebarDeckPlaying</ObjectName>
+                <Text>(( </Text>
+                <Style>color: #d73535;</Style>
+                <Connection>
+                  <ConfigKey>[Channel<Variable name="channel"/>],play</ConfigKey>
+                  <BindProperty>visible</BindProperty>
+                </Connection>
+              </Label>
+              <Label>
+                <ObjectName>SidebarDeckName</ObjectName>
+                <Text><Variable name="channel"/></Text>
+              </Label>
+              <Label>
+                <ObjectName>SidebarDeckPlaying</ObjectName>
+                <Text> ))</Text>
+                <Style>color: #d73535;</Style>
+                <Connection>
+                  <ConfigKey>[Channel<Variable name="channel"/>],play</ConfigKey>
+                  <BindProperty>visible</BindProperty>
+                </Connection>
+              </Label>
+              <WidgetGroup><Size>0me,20f</Size></WidgetGroup>
+            </Children>
+          </WidgetGroup>
+          <WidgetGroup>
+            <ObjectName>SidebarHeaderDivider</ObjectName>
+            <Size>110f,2f</Size>
+          </WidgetGroup>
+          <WidgetGroup>
+            <ObjectName>SidebarKeyRow</ObjectName>
+            <Layout>horizontal</Layout>
+            <Size>110f,24f</Size>
+            <Children>
+              <WidgetGroup><Size>10f,24f</Size></WidgetGroup>
+              <Label>
+                <ObjectName>SidebarRowIcon</ObjectName>
+                <Text>&#9837;</Text>
+              </Label>
+              <WidgetGroup><Size>4f,24f</Size></WidgetGroup>
+              <Key>
+                <ObjectName>SidebarKeyInfo</ObjectName>
+                <Size>me,24f</Size>
+                <TooltipId>visual_key</TooltipId>
+                <DisplayCents>false</DisplayCents>
+                <Connection>
+                  <ConfigKey>[Channel<Variable name="channel"/>],visual_key</ConfigKey>
+                </Connection>
+              </Key>
+            </Children>
+          </WidgetGroup>
+          <WidgetGroup>
+            <ObjectName>SidebarRowDivider</ObjectName>
+            <Size>110f,1f</Size>
+          </WidgetGroup>
+          <WidgetGroup>
+            <ObjectName>SidebarLoopRow</ObjectName>
+            <Layout>horizontal</Layout>
+            <Size>110f,24f</Size>
+            <Children>
+              <WidgetGroup><Size>10f,24f</Size></WidgetGroup>
+              <Label>
+                <ObjectName>SidebarLoopArrow</ObjectName>
+                <Text>&#8634;</Text>
+                <Connection>
+                  <ConfigKey>[Channel<Variable name="channel"/>],loop_enabled</ConfigKey>
+                  <BindProperty>highlight</BindProperty>
+                </Connection>
+              </Label>
+              <WidgetGroup><Size>4f,24f</Size></WidgetGroup>
+              <WidgetGroup>
+                <ObjectName>SidebarLoopSizeWrapper</ObjectName>
+                <Layout>horizontal</Layout>
+                <Size>me,24f</Size>
+                <Children>
+                  <BeatSpinBox>
+                    <ObjectName>SidebarLoopSize</ObjectName>
+                    <Size>me,24f</Size>
+                    <TooltipId>beatloop_size</TooltipId>
+                    <Value>[Channel<Variable name="channel"/>],beatloop_size</Value>
+                  </BeatSpinBox>
+                </Children>
+                <Connection>
+                  <ConfigKey>[Channel<Variable name="channel"/>],loop_enabled</ConfigKey>
+                  <BindProperty>highlight</BindProperty>
+                </Connection>
+              </WidgetGroup>
+            </Children>
+          </WidgetGroup>
+        </Children>
+      </WidgetGroup>
+
+      <!-- ══ 4-DECK LAYOUT ══ horizontal: [KEY+LOOP | number column] ═══ -->
+      <WidgetGroup>
+        <ObjectName>SidebarDeckLayout4</ObjectName>
+        <Layout>horizontal</Layout>
+        <Size>110f,0me</Size>
+        <Connection>
+          <ConfigKey>[Skin],show_4decks</ConfigKey>
+          <BindProperty>visible</BindProperty>
+        </Connection>
+        <Children>
+
+          <!-- Column 1: KEY + LOOP stacked -->
+          <WidgetGroup>
+            <ObjectName>SidebarDeckInfo4</ObjectName>
+            <Layout>vertical</Layout>
+            <Size>0me,0me</Size>
+            <Children>
+              <WidgetGroup>
+                <ObjectName>SidebarKeyRow</ObjectName>
+                <Layout>horizontal</Layout>
+                <Size>0me,0me</Size>
+                <Children>
+                  <WidgetGroup><Size>8f,0me</Size></WidgetGroup>
+                  <Label>
+                    <ObjectName>SidebarRowIcon</ObjectName>
+                    <Text>&#9837;</Text>
+                  </Label>
+                  <WidgetGroup><Size>4f,0me</Size></WidgetGroup>
+                  <Key>
+                    <ObjectName>SidebarKeyInfo</ObjectName>
+                    <Size>me,0me</Size>
+                    <TooltipId>visual_key</TooltipId>
+                    <DisplayCents>false</DisplayCents>
+                    <Connection>
+                      <ConfigKey>[Channel<Variable name="channel"/>],visual_key</ConfigKey>
+                    </Connection>
+                  </Key>
+                </Children>
+              </WidgetGroup>
+              <WidgetGroup>
+                <ObjectName>SidebarRowDivider</ObjectName>
+                <Size>0me,1f</Size>
+              </WidgetGroup>
+              <WidgetGroup>
+                <ObjectName>SidebarLoopRow</ObjectName>
+                <Layout>horizontal</Layout>
+                <Size>0me,0me</Size>
+                <Children>
+                  <WidgetGroup><Size>8f,0me</Size></WidgetGroup>
+                  <Label>
+                    <ObjectName>SidebarLoopArrow</ObjectName>
+                    <Text>&#8634;</Text>
+                    <Connection>
+                      <ConfigKey>[Channel<Variable name="channel"/>],loop_enabled</ConfigKey>
+                      <BindProperty>highlight</BindProperty>
+                    </Connection>
+                  </Label>
+                  <WidgetGroup><Size>4f,0me</Size></WidgetGroup>
+                  <WidgetGroup>
+                    <ObjectName>SidebarLoopSizeWrapper</ObjectName>
+                    <Layout>horizontal</Layout>
+                    <Size>me,0me</Size>
+                    <Children>
+                      <BeatSpinBox>
+                        <ObjectName>SidebarLoopSize</ObjectName>
+                        <Size>me,0me</Size>
+                        <TooltipId>beatloop_size</TooltipId>
+                        <Value>[Channel<Variable name="channel"/>],beatloop_size</Value>
+                      </BeatSpinBox>
+                    </Children>
+                    <Connection>
+                      <ConfigKey>[Channel<Variable name="channel"/>],loop_enabled</ConfigKey>
+                      <BindProperty>highlight</BindProperty>
+                    </Connection>
+                  </WidgetGroup>
+                </Children>
+              </WidgetGroup>
+            </Children>
+          </WidgetGroup>
+
+          <!-- Thin vertical divider between columns -->
+          <WidgetGroup>
+            <ObjectName>SidebarHeaderDivider</ObjectName>
+            <Size>2f,0me</Size>
+          </WidgetGroup>
+
+          <!-- Column 2: deck number as PushButton (naturally centered text)
+               bound to [ChannelN],sync_mode display-only so it changes
+               colour: white=no sync, blue=follower, orange=master.
+               sync_mode: 0=None, 1=Follower, 2=LeaderSoft, 3=LeaderExplicit
+               (confirmed in src/engine/sync/syncable.h). -->
+          <WidgetGroup>
+            <ObjectName>SidebarDeckStrip</ObjectName>
+            <Layout>vertical</Layout>
+            <Size>30f,0me</Size>
+            <Children>
+              <PushButton>
+                <ObjectName>SidebarDeckNumber</ObjectName>
+                <Size>0me,0me</Size>
+                <NumberStates>4</NumberStates>
+                <State><Number>0</Number><Text><Variable name="channel"/></Text></State>
+                <State><Number>1</Number><Text><Variable name="channel"/></Text></State>
+                <State><Number>2</Number><Text><Variable name="channel"/></Text></State>
+                <State><Number>3</Number><Text><Variable name="channel"/></Text></State>
+                <Connection>
+                  <ConfigKey>[Channel<Variable name="channel"/>],sync_mode</ConfigKey>
+                  <ConnectValueFromWidget>false</ConnectValueFromWidget>
+                </Connection>
+              </PushButton>
+            </Children>
+          </WidgetGroup>
+
+        </Children>
+      </WidgetGroup>
+
+    </Children>
+  </WidgetGroup>
+</Template>

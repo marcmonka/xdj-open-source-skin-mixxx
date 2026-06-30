@@ -1,0 +1,185 @@
+<Template>
+  <WidgetStack currentpage="[Skin],waveform_color_mode">
+    <Children>
+
+      <!-- Page 0: 3 Band (baix=blau, mig=taronja, alt=crema) -->
+      <WidgetGroup trigger="[Skin],waveform_3band">
+        <ObjectName>Waveforms</ObjectName>
+        <Layout>vertical</Layout>
+        <Size>0me,0me</Size>
+        <Children>
+          <!-- Order: 3 → 1 → 2 → 4 matching sidebar left order -->
+          <WidgetGroup>
+            <ObjectName>Waveform3Wrapper</ObjectName>
+            <Layout>vertical</Layout>
+            <Size>0me,50me</Size>
+            <Children>
+              <Template src="skin:waveform_colored.xml">
+                <SetVariable name="channel">3</SetVariable>
+                <SetVariable name="SignalColor">#32323c</SetVariable>
+                <SetVariable name="SignalLowColor">#0551cc</SetVariable>
+                <SetVariable name="SignalMidColor">#a45f26</SetVariable>
+                <SetVariable name="SignalHighColor">#eee3c6</SetVariable>
+              </Template>
+            </Children>
+            <Connection>
+              <ConfigKey>[Skin],show_4decks</ConfigKey>
+              <BindProperty>visible</BindProperty>
+            </Connection>
+          </WidgetGroup>
+          <Template src="skin:waveform_colored.xml">
+            <SetVariable name="channel">1</SetVariable>
+            <SetVariable name="SignalColor">#32323c</SetVariable>
+            <SetVariable name="SignalLowColor">#0551cc</SetVariable>
+            <SetVariable name="SignalMidColor">#a45f26</SetVariable>
+            <SetVariable name="SignalHighColor">#eee3c6</SetVariable>
+          </Template>
+          <Template src="skin:waveform_colored.xml">
+            <SetVariable name="channel">2</SetVariable>
+            <SetVariable name="SignalColor">#32323c</SetVariable>
+            <SetVariable name="SignalLowColor">#0551cc</SetVariable>
+            <SetVariable name="SignalMidColor">#a45f26</SetVariable>
+            <SetVariable name="SignalHighColor">#eee3c6</SetVariable>
+          </Template>
+          <WidgetGroup>
+            <ObjectName>Waveform4Wrapper</ObjectName>
+            <Layout>vertical</Layout>
+            <Size>0me,50me</Size>
+            <Children>
+              <Template src="skin:waveform_colored.xml">
+                <SetVariable name="channel">4</SetVariable>
+                <SetVariable name="SignalColor">#32323c</SetVariable>
+                <SetVariable name="SignalLowColor">#0551cc</SetVariable>
+                <SetVariable name="SignalMidColor">#a45f26</SetVariable>
+                <SetVariable name="SignalHighColor">#eee3c6</SetVariable>
+              </Template>
+            </Children>
+            <Connection>
+              <ConfigKey>[Skin],show_4decks</ConfigKey>
+              <BindProperty>visible</BindProperty>
+            </Connection>
+          </WidgetGroup>
+        </Children>
+      </WidgetGroup>
+
+      <!-- Page 1: RGB (baix=vermell, mig=verd, alt=blau) -->
+      <WidgetGroup trigger="[Skin],waveform_rgb">
+        <ObjectName>Waveforms</ObjectName>
+        <Layout>vertical</Layout>
+        <Size>0me,0me</Size>
+        <Children>
+          <WidgetGroup>
+            <ObjectName>Waveform3Wrapper</ObjectName>
+            <Layout>vertical</Layout>
+            <Size>0me,50me</Size>
+            <Children>
+              <Template src="skin:waveform_colored.xml">
+                <SetVariable name="channel">3</SetVariable>
+                <SetVariable name="SignalColor">#1a1a1a</SetVariable>
+                <SetVariable name="SignalLowColor">#cc0000</SetVariable>
+                <SetVariable name="SignalMidColor">#00cc00</SetVariable>
+                <SetVariable name="SignalHighColor">#2255ff</SetVariable>
+              </Template>
+            </Children>
+            <Connection>
+              <ConfigKey>[Skin],show_4decks</ConfigKey>
+              <BindProperty>visible</BindProperty>
+            </Connection>
+          </WidgetGroup>
+          <Template src="skin:waveform_colored.xml">
+            <SetVariable name="channel">1</SetVariable>
+            <SetVariable name="SignalColor">#1a1a1a</SetVariable>
+            <SetVariable name="SignalLowColor">#cc0000</SetVariable>
+            <SetVariable name="SignalMidColor">#00cc00</SetVariable>
+            <SetVariable name="SignalHighColor">#2255ff</SetVariable>
+          </Template>
+          <Template src="skin:waveform_colored.xml">
+            <SetVariable name="channel">2</SetVariable>
+            <SetVariable name="SignalColor">#1a1a1a</SetVariable>
+            <SetVariable name="SignalLowColor">#cc0000</SetVariable>
+            <SetVariable name="SignalMidColor">#00cc00</SetVariable>
+            <SetVariable name="SignalHighColor">#2255ff</SetVariable>
+          </Template>
+          <WidgetGroup>
+            <ObjectName>Waveform4Wrapper</ObjectName>
+            <Layout>vertical</Layout>
+            <Size>0me,50me</Size>
+            <Children>
+              <Template src="skin:waveform_colored.xml">
+                <SetVariable name="channel">4</SetVariable>
+                <SetVariable name="SignalColor">#1a1a1a</SetVariable>
+                <SetVariable name="SignalLowColor">#cc0000</SetVariable>
+                <SetVariable name="SignalMidColor">#00cc00</SetVariable>
+                <SetVariable name="SignalHighColor">#2255ff</SetVariable>
+              </Template>
+            </Children>
+            <Connection>
+              <ConfigKey>[Skin],show_4decks</ConfigKey>
+              <BindProperty>visible</BindProperty>
+            </Connection>
+          </WidgetGroup>
+        </Children>
+      </WidgetGroup>
+
+      <!-- Page 2: Blue (monocrom blau) -->
+      <WidgetGroup trigger="[Skin],waveform_blue">
+        <ObjectName>Waveforms</ObjectName>
+        <Layout>vertical</Layout>
+        <Size>0me,0me</Size>
+        <Children>
+          <WidgetGroup>
+            <ObjectName>Waveform3Wrapper</ObjectName>
+            <Layout>vertical</Layout>
+            <Size>0me,50me</Size>
+            <Children>
+              <Template src="skin:waveform_colored.xml">
+                <SetVariable name="channel">3</SetVariable>
+                <SetVariable name="SignalColor">#001133</SetVariable>
+                <SetVariable name="SignalLowColor">#0033aa</SetVariable>
+                <SetVariable name="SignalMidColor">#0077dd</SetVariable>
+                <SetVariable name="SignalHighColor">#44aaff</SetVariable>
+              </Template>
+            </Children>
+            <Connection>
+              <ConfigKey>[Skin],show_4decks</ConfigKey>
+              <BindProperty>visible</BindProperty>
+            </Connection>
+          </WidgetGroup>
+          <Template src="skin:waveform_colored.xml">
+            <SetVariable name="channel">1</SetVariable>
+            <SetVariable name="SignalColor">#001133</SetVariable>
+            <SetVariable name="SignalLowColor">#0033aa</SetVariable>
+            <SetVariable name="SignalMidColor">#0077dd</SetVariable>
+            <SetVariable name="SignalHighColor">#44aaff</SetVariable>
+          </Template>
+          <Template src="skin:waveform_colored.xml">
+            <SetVariable name="channel">2</SetVariable>
+            <SetVariable name="SignalColor">#001133</SetVariable>
+            <SetVariable name="SignalLowColor">#0033aa</SetVariable>
+            <SetVariable name="SignalMidColor">#0077dd</SetVariable>
+            <SetVariable name="SignalHighColor">#44aaff</SetVariable>
+          </Template>
+          <WidgetGroup>
+            <ObjectName>Waveform4Wrapper</ObjectName>
+            <Layout>vertical</Layout>
+            <Size>0me,50me</Size>
+            <Children>
+              <Template src="skin:waveform_colored.xml">
+                <SetVariable name="channel">4</SetVariable>
+                <SetVariable name="SignalColor">#001133</SetVariable>
+                <SetVariable name="SignalLowColor">#0033aa</SetVariable>
+                <SetVariable name="SignalMidColor">#0077dd</SetVariable>
+                <SetVariable name="SignalHighColor">#44aaff</SetVariable>
+              </Template>
+            </Children>
+            <Connection>
+              <ConfigKey>[Skin],show_4decks</ConfigKey>
+              <BindProperty>visible</BindProperty>
+            </Connection>
+          </WidgetGroup>
+        </Children>
+      </WidgetGroup>
+
+    </Children>
+  </WidgetStack>
+</Template>
